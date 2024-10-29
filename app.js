@@ -35,7 +35,7 @@ app.post("/new", (req, res) => {
     user: req.body.user,
     added: new Date(),
   });
-  res.send("Added");
+  res.redirect("/");
 });
 
 const PORT = 3000;
