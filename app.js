@@ -23,9 +23,9 @@ app.get("/", (req, res) => {
   res.render("index", { messages: messages });
 });
 
-// app.get("/new", (req, res) => {
-//   res.send("New message form");
-// });
+app.get("/new", (req, res) => {
+  res.render("form");
+});
 
 const PORT = 3000;
 
