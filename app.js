@@ -21,12 +21,17 @@ const messages = [
   },
 ];
 
+const links = [
+  { href: "/", text: "Home" },
+  { href: "new", text: "Form" },
+];
+
 app.get("/", (req, res) => {
-  res.render("index", { messages: messages });
+  res.render("index", { messages: messages, links: links });
 });
 
 app.get("/new", (req, res) => {
-  res.render("form");
+  res.render("form", { links: links });
 });
 
 app.post("/new", (req, res) => {
