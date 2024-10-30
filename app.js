@@ -34,6 +34,11 @@ app.get("/new", (req, res) => {
   res.render("form", { links: links });
 });
 
+app.get("/:messageId", (req, res) => {
+  const { messageId } = req.params;
+  res.render("messagedetails", { message: messages[messageId], links: links });
+});
+
 app.post("/new", (req, res) => {
   messages.push({
     text: req.body.message,
