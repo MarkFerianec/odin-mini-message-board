@@ -11,8 +11,8 @@
     <ul>
       <% messages.forEach((message) => { %>
       <li>
-        <%= message.user %>: <%= message.text %> <%= message.added %>
-        <a href="<%=messages.indexOf(message)%>">Open</a>
+        <%= message.username %>: <%= message.message %> <%= message.added %>
+        <a href="<%= ((messages.indexOf(message)) + 1) %>">Open</a>
       </li>
       <% }) %>
     </ul>

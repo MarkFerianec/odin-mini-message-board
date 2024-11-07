@@ -1,39 +1,33 @@
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
-];
+const db = require("../db/queries");
 
 const links = [
   { href: "/", text: "Home" },
   { href: "new", text: "Form" },
 ];
 
-exports.getIndex = (req, res) => {
-  res.render("index", { messages: messages, links: links });
+exports.getIndex = async (req, res) => {
+  const messagesFromDB = await db.getAllMessages();
+
+  res.render("index", { messages: messagesFromDB, links: links });
 };
 
 exports.getNewMessageForm = (req, res) => {
   res.render("form", { links: links });
 };
 
-exports.getMessageDetails = (req, res) => {
-  const { messageId } = req.params;
-  res.render("messagedetails", { message: messages[messageId], links: links });
+exports.getMessageDetails = async (req, res) => {
+  let { messageId } = req.params;
+
+  const message = await db.getMessageDetails(messageId);
+
+  res.render("messagedetails", { message: message.rows[0], links: links });
 };
 
-exports.postNewMessage = (req, res) => {
-  messages.push({
-    text: req.body.message,
-    user: req.body.user,
-    added: new Date(),
-  });
+exports.postNewMessage = async (req, res) => {
+  const { message, username } = req.body;
+  const added = new Date().toString();
+
+  await db.postNewMessageToDb(message, username, added);
+
   res.redirect("/");
 };

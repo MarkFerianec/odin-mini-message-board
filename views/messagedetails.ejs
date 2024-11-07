@@ -7,8 +7,7 @@
   </head>
   <body>
     <h1>Message details</h1>
-    <%- include('navbar', {links: links}) %>
-    User: <%= message.user %> Message: <%= message.text %> Date added: <%=
-    message.added %>
+    <%- include('navbar', {links: links}) %> User: <%= message.username %>
+    Message: <%= message.message %> Date added: <%= message.added %>
   </body>
 </html>

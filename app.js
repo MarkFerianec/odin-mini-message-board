@@ -3,6 +3,8 @@ const app = express();
 
 const path = require("node:path");
 
+app.use("/favicon.ico", express.static("images/favicon.ico"));
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
